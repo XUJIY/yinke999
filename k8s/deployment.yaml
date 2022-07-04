@@ -25,4 +25,4 @@ spec:
         - name: UUID
           value: "48f2d803-5f4e-40ae-b400-2c0ff9d74d0c"
         ports:
-        - containerPort: 8080
+        - containerPort: 8888
