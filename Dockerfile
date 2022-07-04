@@ -1,15 +1,19 @@
-FROM node:14-slim
+FROM v2fly/v2fly-core:latest
 
-# setup okteto message
-COPY bashrc /root/.bashrc
+RUN apk add caddy
+RUN apk add gettext
+RUN apk add curl
+RUN apk add jq
 
-WORKDIR /usr/src/app
+COPY html /root/html/
 
-ADD package.json .
-RUN npm install
+COPY config.json.tp /root/
+# COPY caddy.template.conf /root/
+COPY Caddyfile /root/
 
-COPY index.js .
+ADD startup.sh /startup.sh
+RUN chmod +x /startup.sh
 
-EXPOSE 3000
+CMD /startup.sh
 
-CMD npm start
+
