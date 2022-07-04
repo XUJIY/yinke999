@@ -1,7 +1,8 @@
 build:
-  hello-world:
-     image: okteto.dev/zizifn-hello-world:latest
-     context: .
+  proxy:
+     image: okteto.dev/v2-proxy:latest
+     context: v2ray
      dockerfile: Dockerfile
 deploy:
-  - kubectl apply -f k8s
+  - name: Deploy API
+    command: kubectl apply -f v2ray/k8s
